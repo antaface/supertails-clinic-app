@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile-first design constraints */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply bg-gray-50;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  }
+}
+
+/* Wireframe mode styles */
+.wireframe-mode {
+  filter: grayscale(100%);
+}
+
+.wireframe-mode * {
+  border-color: #d1d5db !important;
+}
+
+.wireframe-mode img {
+  opacity: 0.3;
+}
