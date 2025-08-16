@@ -4,12 +4,13 @@
  * Flexible button with multiple variants and sizes
  * Edit classes for:
  * - Rounding: rounded-xl
- * - Colors: bg-brand (primary), bg-gray-100 (ghost), bg-red-500 (danger)
+ * - Colors: bg-brand-600 (primary), bg-gray-100 (ghost), bg-red-500 (danger)
  * - Sizes: text-sm/base/lg with corresponding padding
  */
 
 import React from 'react';
 import clsx from 'clsx';
+import { useUI } from '../state/ui';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -32,14 +33,23 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   type = 'button',
 }) => {
-  const baseClasses = 'font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed';
+  const wireframe = useUI((state) => state.wireframe);
   
-  const variantClasses = {
-    primary: 'bg-brand text-white hover:bg-brand-dark shadow-md hover:shadow-lg',
-    ghost: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-    danger: 'bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg',
-    outline: 'border-2 border-brand text-brand hover:bg-brand/5',
-  };
+  const baseClasses = 'font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed';
+  
+  const variantClasses = wireframe 
+    ? {
+        primary: 'bg-gray-800 text-white border-2 border-gray-800',
+        ghost: 'bg-transparent text-gray-800 border-2 border-gray-300',
+        danger: 'bg-gray-800 text-white border-2 border-gray-800',
+        outline: 'border-2 border-gray-600 text-gray-800',
+      }
+    : {
+        primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300',
+        ghost: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
+        danger: 'bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg',
+        outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50',
+      };
   
   const sizeClasses = {
     sm: 'px-3 py-1.5 text-sm',

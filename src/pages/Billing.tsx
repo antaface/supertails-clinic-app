@@ -57,7 +57,7 @@ export const Billing: React.FC = () => {
               
               {invoice.status === 'pending' && (
                 <Button
-                  size="small"
+                  size="sm"
                   fullWidth
                   onClick={() => handlePayInvoice(invoice.id)}
                 >
@@ -67,7 +67,7 @@ export const Billing: React.FC = () => {
               )}
               
               {invoice.status === 'paid' && (
-                <Button size="small" variant="outline" fullWidth>
+                <Button size="sm" variant="outline" fullWidth>
                   <Receipt className="w-4 h-4 mr-1" />
                   View Receipt
                 </Button>

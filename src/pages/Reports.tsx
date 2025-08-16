@@ -98,20 +98,20 @@ export const Reports: React.FC = () => {
               {report.status === 'ready' ? (
                 <>
                   <Button
-                    size="small"
+                    size="sm"
                     fullWidth
                     onClick={() => handleViewReport(report.id)}
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     View Report
                   </Button>
-                  <Button size="small" variant="outline" fullWidth>
+                  <Button size="sm" variant="outline" fullWidth>
                     <Download className="w-4 h-4 mr-1" />
                     Download
                   </Button>
                 </>
               ) : (
-                <Button size="small" variant="secondary" fullWidth disabled>
+                <Button size="sm" variant="ghost" fullWidth disabled>
                   Report Processing...
                 </Button>
               )}

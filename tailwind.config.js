@@ -7,20 +7,23 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Lexend Deca', 'system-ui', '-apple-system', 'sans-serif'],
+        'sans': ['"Lexend Deca"', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'],
       },
-      height: {
-        'screen-mobile': '844px',
-      },
-      width: {
-        'screen-mobile': '390px',
-      },
-      maxWidth: {
-        'mobile': '390px',
-      },
-      borderRadius: {
-        'DEFAULT': '14px',
-        'lg': '20px',
+      colors: {
+        brand: {
+          DEFAULT: '#2563eb',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+        },
+        'ghost-white': '#f9fafb',
       },
       spacing: {
         'safe-top': 'env(safe-area-inset-top)',
@@ -28,22 +31,10 @@ export default {
         'safe-left': 'env(safe-area-inset-left)',
         'safe-right': 'env(safe-area-inset-right)',
       },
-      colors: {
-        brand: {
-          DEFAULT: '#2563eb',
-          light: '#dbeafe',
-          dark: '#1e40af',
-        },
-        status: {
-          success: '#10b981',
-          warning: '#f59e0b',
-          danger: '#ef4444',
-          info: '#3b82f6',
-        },
-      },
       animation: {
         'fade-in': 'fadeIn 150ms ease-in-out',
         'slide-up': 'slideUp 150ms ease-out',
+        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -53,6 +44,10 @@ export default {
         slideUp: {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        pulseSoft: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' },
         },
       },
     },

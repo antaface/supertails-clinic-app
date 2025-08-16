@@ -57,21 +57,21 @@ export const Records: React.FC = () => {
 
             <div className="flex gap-2">
               <Button
-                size="small"
+                size="sm"
                 variant="outline"
                 onClick={() => handleView(record.id)}
               >
                 <Eye className="w-4 h-4" />
               </Button>
               <Button
-                size="small"
+                size="sm"
                 variant="outline"
                 onClick={() => handleDownload(record.id)}
               >
                 <Download className="w-4 h-4" />
               </Button>
               <Button
-                size="small"
+                size="sm"
                 variant="outline"
                 onClick={() => handleShare(record.id)}
               >

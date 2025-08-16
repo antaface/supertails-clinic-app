@@ -6,13 +6,15 @@
  * - Header height: h-14
  * - Bottom nav height: h-16
  * - Safe area padding: pt-safe-top, pb-safe-bottom
- * - Background color: bg-gray-50
+ * - Background color: bg-ghost-white (polished) or bg-white (wireframe)
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppBar } from '../components/AppBar';
 import { BottomTabs } from '../components/BottomTabs';
+import { useUI } from '../state/ui';
+import clsx from 'clsx';
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -20,6 +22,7 @@ interface AppShellProps {
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   const location = useLocation();
+  const wireframe = useUI((state) => state.wireframe);
   
   const getPageTitle = () => {
     switch (location.pathname) {
@@ -33,8 +36,20 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
     }
   };
 
+  // Apply wireframe class to body
+  useEffect(() => {
+    if (wireframe) {
+      document.body.classList.add('wireframe');
+    } else {
+      document.body.classList.remove('wireframe');
+    }
+  }, [wireframe]);
+
   return (
-    <div className="min-h-screen bg-gray-50 max-w-screen-sm mx-auto relative">
+    <div className={clsx(
+      'min-h-screen max-w-screen-sm mx-auto relative font-sans antialiased',
+      wireframe ? 'bg-white text-black' : 'bg-ghost-white text-gray-900'
+    )}>
       {/* Sticky Header */}
       <AppBar title={getPageTitle()} />
       

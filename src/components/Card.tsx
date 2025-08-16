@@ -11,6 +11,7 @@
 
 import React from 'react';
 import clsx from 'clsx';
+import { useUI } from '../state/ui';
 
 interface CardProps {
   children: React.ReactNode;
@@ -25,11 +26,19 @@ export const Card: React.FC<CardProps> = ({
   onClick,
   variant = 'default' 
 }) => {
-  const variants = {
-    default: 'bg-white shadow-md hover:shadow-lg',
-    elevated: 'bg-white shadow-lg hover:shadow-xl',
-    outlined: 'bg-white border-2 border-gray-200 hover:border-gray-300',
-  };
+  const wireframe = useUI((state) => state.wireframe);
+  
+  const variants = wireframe
+    ? {
+        default: 'bg-white border-2 border-gray-400',
+        elevated: 'bg-white border-2 border-gray-500',
+        outlined: 'bg-white border-2 border-gray-300',
+      }
+    : {
+        default: 'bg-white shadow-md hover:shadow-lg',
+        elevated: 'bg-white shadow-lg hover:shadow-xl',
+        outlined: 'bg-white border-2 border-gray-200 hover:border-gray-300',
+      };
 
   return (
     <div
