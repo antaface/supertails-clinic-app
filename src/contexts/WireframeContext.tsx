@@ -8,7 +8,7 @@ interface WireframeContextType {
 const WireframeContext = createContext<WireframeContextType | undefined>(undefined);
 
 export const WireframeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isWireframe, setIsWireframe] = useState(true); // Start in wireframe mode
+  const [isWireframe, setIsWireframe] = useState(false); // Start in polished mode
 
   const toggleWireframe = () => {
     setIsWireframe(prev => !prev);

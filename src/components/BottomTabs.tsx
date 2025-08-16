@@ -1,6 +1,18 @@
+/**
+ * BottomTabs Component
+ * 
+ * Fixed bottom navigation with 5 main sections
+ * Edit classes for:
+ * - Height: h-16
+ * - Active color: text-brand, bg-brand/10
+ * - Inactive color: text-gray-500
+ * - Shadow: shadow-lg
+ */
+
 import React from 'react';
-import { Home, Calendar, FileText, Activity, Receipt, User } from 'lucide-react';
+import { Home, Calendar, FileText, Activity, Receipt } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 const tabs = [
   { id: 'home', label: 'Home', icon: Home, path: '/' },
@@ -8,7 +20,6 @@ const tabs = [
   { id: 'prescriptions', label: 'Rx', icon: FileText, path: '/prescriptions' },
   { id: 'reports', label: 'Reports', icon: Activity, path: '/reports' },
   { id: 'records', label: 'Records', icon: Receipt, path: '/records' },
-  { id: 'billing', label: 'Bills', icon: Receipt, path: '/billing' },
 ];
 
 export const BottomTabs: React.FC = () => {
@@ -16,7 +27,7 @@ export const BottomTabs: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 max-w-mobile mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg max-w-screen-sm mx-auto pb-safe-bottom">
       <div className="flex justify-around items-center h-16">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -26,16 +37,33 @@ export const BottomTabs: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => navigate(tab.path)}
-              className={`flex flex-col items-center justify-center w-full h-full ${
-                isActive ? 'text-blue-600' : 'text-gray-500'
-              }`}
+              className={clsx(
+                "flex flex-col items-center justify-center w-full h-full transition-all relative group",
+                "min-w-[44px] min-h-[44px]", // Accessible touch targets
+                isActive ? "text-brand" : "text-gray-500 hover:text-gray-700"
+              )}
+              aria-label={tab.label}
+              aria-current={isActive ? 'page' : undefined}
             >
-              <Icon className="w-5 h-5 mb-1" />
-              <span className="text-xs">{tab.label}</span>
+              {/* Active indicator pill */}
+              {isActive && (
+                <div className="absolute inset-x-2 top-1 bottom-1 bg-brand/10 rounded-lg -z-10 animate-fade-in" />
+              )}
+              
+              <Icon className={clsx(
+                "w-5 h-5 mb-1 transition-transform",
+                isActive && "transform scale-110"
+              )} />
+              <span className={clsx(
+                "text-xs font-medium",
+                isActive && "font-semibold"
+              )}>
+                {tab.label}
+              </span>
             </button>
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 };
