@@ -1,12 +1,8 @@
 /**
  * BottomTabs Component
  * 
- * Fixed bottom navigation with 5 main sections
- * Edit classes for:
- * - Height: h-16
- * - Active color: text-brand-600, bg-brand-100
- * - Inactive color: text-gray-500
- * - Shadow: shadow-lg
+ * Fixed bottom navigation with safe area padding
+ * Active state: bg-brand-600 text-white rounded-full
  */
 
 import React from 'react';
@@ -20,7 +16,7 @@ const tabs = [
   { id: 'book', label: 'Book', icon: Calendar, path: '/book' },
   { id: 'prescriptions', label: 'Rx', icon: FileText, path: '/prescriptions' },
   { id: 'reports', label: 'Reports', icon: Activity, path: '/reports' },
-  { id: 'billing', label: 'Bills', icon: Receipt, path: '/billing' },
+  { id: 'records', label: 'Records', icon: Receipt, path: '/records' },
 ];
 
 export const BottomTabs: React.FC = () => {
@@ -29,13 +25,13 @@ export const BottomTabs: React.FC = () => {
   const wireframe = useUI((state) => state.wireframe);
 
   return (
-    <nav className={clsx(
-      'fixed bottom-0 left-0 right-0 bg-white max-w-screen-sm mx-auto pb-safe-bottom transition-all',
+    <div className={clsx(
+      'bg-white max-w-[430px] mx-auto w-full pb-safe-bottom transition-all',
       wireframe 
         ? 'border-t-2 border-gray-300' 
-        : 'border-t border-gray-100 shadow-lg'
+        : 'border-t border-periwinkle-800/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]'
     )}>
-      <div className="flex justify-around items-center h-16">
+      <div className="flex justify-around items-center h-16 px-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = location.pathname === tab.path;
@@ -45,29 +41,24 @@ export const BottomTabs: React.FC = () => {
               key={tab.id}
               onClick={() => navigate(tab.path)}
               className={clsx(
-                "flex flex-col items-center justify-center w-full h-full transition-all relative group",
-                "min-w-[44px] min-h-[44px]", // Accessible touch targets
+                "flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2 rounded-full transition-all",
                 wireframe 
-                  ? isActive ? "text-black" : "text-gray-500"
-                  : isActive ? "text-brand-600" : "text-gray-500 hover:text-gray-700"
+                  ? isActive 
+                    ? "bg-gray-800 text-white" 
+                    : "text-gray-500"
+                  : isActive 
+                    ? "bg-brand-600 text-white shadow-md" 
+                    : "text-gray-500 hover:text-brand-600"
               )}
               aria-label={tab.label}
               aria-current={isActive ? 'page' : undefined}
             >
-              {/* Active indicator pill */}
-              {isActive && !wireframe && (
-                <div className="absolute inset-x-2 top-1 bottom-1 bg-brand-100 rounded-lg -z-10 animate-fade-in" />
-              )}
-              {isActive && wireframe && (
-                <div className="absolute inset-x-2 top-1 bottom-1 border-2 border-gray-400 rounded-lg -z-10" />
-              )}
-              
               <Icon className={clsx(
-                "w-5 h-5 mb-1 transition-transform",
-                isActive && !wireframe && "transform scale-110"
+                "transition-transform",
+                isActive ? "w-5 h-5 scale-110" : "w-5 h-5"
               )} />
               <span className={clsx(
-                "text-xs",
+                "text-[10px] mt-0.5",
                 isActive ? "font-semibold" : "font-medium"
               )}>
                 {tab.label}
@@ -76,6 +67,6 @@ export const BottomTabs: React.FC = () => {
           );
         })}
       </div>
-    </nav>
+    </div>
   );
 };

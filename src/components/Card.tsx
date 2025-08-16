@@ -1,12 +1,12 @@
 /**
  * Card Component
  * 
- * Rounded container with shadow and hover states
+ * Rounded container with new brand palette
  * Edit classes for:
  * - Rounding: rounded-2xl
- * - Shadow: shadow-md hover:shadow-lg
- * - Padding: p-4
- * - Background: bg-white
+ * - Shadow: shadow-sm
+ * - Border: border-periwinkle-800/10
+ * - Padding: p-4 md:p-5
  */
 
 import React from 'react';
@@ -17,7 +17,7 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  variant?: 'default' | 'elevated' | 'outlined';
+  variant?: 'default' | 'elevated' | 'outlined' | 'gradient';
 }
 
 export const Card: React.FC<CardProps> = ({ 
@@ -33,19 +33,21 @@ export const Card: React.FC<CardProps> = ({
         default: 'bg-white border-2 border-gray-400',
         elevated: 'bg-white border-2 border-gray-500',
         outlined: 'bg-white border-2 border-gray-300',
+        gradient: 'bg-white border-2 border-gray-600',
       }
     : {
-        default: 'bg-white shadow-md hover:shadow-lg',
-        elevated: 'bg-white shadow-lg hover:shadow-xl',
-        outlined: 'bg-white border-2 border-gray-200 hover:border-gray-300',
+        default: 'bg-white shadow-sm border border-periwinkle-800/10',
+        elevated: 'bg-white shadow-md border border-periwinkle-800/10',
+        outlined: 'bg-white border-2 border-periwinkle-200',
+        gradient: 'bg-gradient-to-br from-brand-500 to-periwinkle-500 text-white',
       };
 
   return (
     <div
       className={clsx(
-        'rounded-2xl p-4 transition-all duration-200',
+        'rounded-2xl p-4 md:p-5 transition-all duration-150',
         variants[variant],
-        onClick && 'cursor-pointer active:scale-[0.98]',
+        onClick && 'cursor-pointer active:scale-[0.98] hover:shadow-md',
         className
       )}
       onClick={onClick}

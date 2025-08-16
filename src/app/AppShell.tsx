@@ -1,12 +1,11 @@
 /**
  * AppShell Component
  * 
- * Main app shell with sticky header and fixed bottom navigation
+ * Main app shell with mobile-first constraints
  * Edit classes for:
- * - Header height: h-14
- * - Bottom nav height: h-16
+ * - Max width: max-w-[430px]
+ * - Background: bg-ghost-white
  * - Safe area padding: pt-safe-top, pb-safe-bottom
- * - Background color: bg-ghost-white (polished) or bg-white (wireframe)
  */
 
 import React, { useEffect } from 'react';
@@ -47,21 +46,25 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
 
   return (
     <div className={clsx(
-      'min-h-screen max-w-screen-sm mx-auto relative',
-      wireframe ? 'bg-white text-black' : 'bg-ghost-white text-gray-900'
+      'mx-auto w-full max-w-[430px] min-h-screen flex flex-col font-sans antialiased text-gray-900',
+      wireframe ? 'bg-white' : 'bg-ghost-white'
     )}>
-      {/* Sticky Header */}
-      <AppBar title={getPageTitle()} />
+      {/* Sticky Header with safe area */}
+      <header className="sticky top-0 z-50 pt-safe-top">
+        <AppBar title={getPageTitle()} />
+      </header>
       
-      {/* Main Content Area with safe area padding */}
-      <main className="pt-14 pb-16 min-h-screen">
+      {/* Main Content Area */}
+      <main className="flex-1 overflow-y-auto pb-20">
         <div className="animate-fade-in">
           {children}
         </div>
       </main>
       
-      {/* Fixed Bottom Navigation */}
-      <BottomTabs />
+      {/* Fixed Bottom Navigation with safe area */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50">
+        <BottomTabs />
+      </nav>
     </div>
   );
 };

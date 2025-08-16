@@ -1,11 +1,8 @@
 /**
  * Button Component
  * 
- * Flexible button with multiple variants and sizes
- * Edit classes for:
- * - Rounding: rounded-xl
- * - Colors: bg-brand-600 (primary), bg-gray-100 (ghost), bg-red-500 (danger)
- * - Sizes: text-sm/base/lg with corresponding padding
+ * Button with brand palette colors
+ * Variants: primary (brand-600), ghost (brand-700), danger (apricot-300)
  */
 
 import React from 'react';
@@ -35,20 +32,20 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const wireframe = useUI((state) => state.wireframe);
   
-  const baseClasses = 'font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'font-medium rounded-xl transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantClasses = wireframe 
     ? {
         primary: 'bg-gray-800 text-white border-2 border-gray-800',
-        ghost: 'bg-transparent text-gray-800 border-2 border-gray-300',
+        ghost: 'bg-transparent text-gray-800 border-2 border-gray-300 hover:bg-gray-100',
         danger: 'bg-gray-800 text-white border-2 border-gray-800',
-        outline: 'border-2 border-gray-600 text-gray-800',
+        outline: 'border-2 border-gray-600 text-gray-800 hover:bg-gray-100',
       }
     : {
-        primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300',
-        ghost: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-        danger: 'bg-red-500 text-white hover:bg-red-600 shadow-md hover:shadow-lg',
-        outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50',
+        primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300/40',
+        ghost: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300/40',
+        danger: 'bg-apricot-300 text-white hover:bg-apricot-400 shadow-md hover:shadow-lg focus:ring-apricot-300/40',
+        outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-300/40',
       };
   
   const sizeClasses = {
