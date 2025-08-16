@@ -47,7 +47,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
 
   return (
     <div className={clsx(
-      'min-h-screen max-w-screen-sm mx-auto relative font-sans antialiased',
+      'min-h-screen max-w-screen-sm mx-auto relative',
       wireframe ? 'bg-white text-black' : 'bg-ghost-white text-gray-900'
     )}>
       {/* Sticky Header */}

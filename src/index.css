@@ -1,65 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./styles/tokens.css";
 
 /* Base styles */
-@layer base {
-  html {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  body {
-    @apply font-sans antialiased;
-  }
-  
-  /* Typography hierarchy */
-  h1, h2 {
-    @apply font-bold tracking-tight;
-  }
-  
-  h3, h4 {
-    @apply font-semibold;
-  }
-  
-  p {
-    @apply font-normal leading-relaxed;
-  }
+html {
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Lexend Deca', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: 'Lexend Deca', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography hierarchy */
+h1, h2 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h3, h4 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.75;
 }
 
 /* Wireframe mode overrides */
 .wireframe {
-  @apply bg-white;
+  filter: grayscale(100%) !important;
 }
 
 .wireframe * {
-  @apply shadow-none !important;
-  filter: grayscale(100%);
-}
-
-.wireframe .bg-brand,
-.wireframe .bg-brand\/10,
-.wireframe .bg-brand-dark {
-  @apply bg-gray-200 !important;
-}
-
-.wireframe .text-brand,
-.wireframe .text-brand-dark {
-  @apply text-gray-700 !important;
-}
-
-.wireframe .border-brand {
-  @apply border-gray-400 !important;
+  box-shadow: none !important;
 }
 
 /* Scrollbar hide utility */
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
