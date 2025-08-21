@@ -46,7 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
         primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300',
         secondary: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300',
         ghost: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300',
-        danger: 'bg-apricot-300 text-white hover:bg-apricot-400 shadow-md hover:shadow-lg focus:ring-apricot-300',
+        danger: 'bg-apricot-500 text-white hover:bg-apricot-600 shadow-md hover:shadow-lg focus:ring-apricot-300',
         outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-300',
       };
   

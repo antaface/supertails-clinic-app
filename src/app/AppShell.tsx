@@ -40,7 +40,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   return (
     <div className={clsx(
       'mx-auto w-full max-w-[430px] min-h-screen flex flex-col font-sans antialiased text-gray-900',
-      wireframe ? 'bg-gray-50' : 'bg-ghost-white'
+      wireframe ? 'bg-gray-50' : 'bg-gradient-to-br from-brand-50 to-periwinkle-50'
     )}>
       {/* Sticky Header with safe area */}
       <header className="sticky top-0 z-50 pt-safe-top">

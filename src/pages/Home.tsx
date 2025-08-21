@@ -34,7 +34,7 @@ export const Home: React.FC = () => {
     { icon: Calendar, label: 'Book Visit', color: 'bg-brand-100 text-brand-600', colorWire: 'bg-gray-100 text-gray-600', path: '/book' },
     { icon: FileText, label: 'Prescriptions', color: 'bg-periwinkle-100 text-periwinkle-600', colorWire: 'bg-gray-100 text-gray-600', path: '/prescriptions' },
     { icon: Activity, label: 'Reports', color: 'bg-apricot-100 text-apricot-600', colorWire: 'bg-gray-100 text-gray-600', path: '/reports' },
-    { icon: Receipt, label: 'Records', color: 'bg-antique-white-200 text-antique-white-700', colorWire: 'bg-gray-100 text-gray-600', path: '/records' },
+    { icon: Receipt, label: 'Records', color: 'bg-amber-100 text-amber-700', colorWire: 'bg-gray-100 text-gray-600', path: '/records' },
   ];
 
   const services = [
@@ -48,7 +48,7 @@ export const Home: React.FC = () => {
       {/* Hero Section */}
       <div className={clsx(
         "px-4 py-8 mb-6 rounded-b-3xl",
-        wireframe ? "bg-gray-200 border-2 border-gray-400" : "bg-gradient-to-br from-tropical-indigo-500 via-brand-500 to-periwinkle-500 shadow-lg"
+        wireframe ? "bg-gray-200 border-2 border-gray-400" : "bg-gradient-to-br from-brand-500 via-brand-400 to-periwinkle-500 shadow-lg"
       )}>
         <div className={wireframe ? "text-gray-900" : "text-white"}>
           <h1 className={clsx("text-2xl font-bold mb-2", !wireframe && "drop-shadow-lg")}>Welcome to Supertails</h1>

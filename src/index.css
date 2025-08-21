@@ -1,8 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Custom theme configuration for Tailwind v4 */
+@theme {
+  --color-brand-50: #e9e5ff;
+  --color-brand-100: #d4ccff;
+  --color-brand-200: #beb3ff;
+  --color-brand-300: #a899ff;
+  --color-brand-400: #9381ff;
+  --color-brand-500: #9381ff;
+  --color-brand-600: #5233ff;
+  --color-brand-700: #2200e6;
+  --color-brand-800: #170099;
+  --color-brand-900: #0b004d;
+  
+  --color-periwinkle-50: #f1f1ff;
+  --color-periwinkle-100: #e2e2ff;
+  --color-periwinkle-200: #d4d4ff;
+  --color-periwinkle-300: #c6c6ff;
+  --color-periwinkle-400: #b8b8ff;
+  --color-periwinkle-500: #b8b8ff;
+  --color-periwinkle-600: #6060ff;
+  --color-periwinkle-700: #0808ff;
+  --color-periwinkle-800: #0000af;
+  --color-periwinkle-900: #000058;
+  
+  --color-apricot-50: #fff7f2;
+  --color-apricot-100: #ffefe4;
+  --color-apricot-200: #ffe7d7;
+  --color-apricot-300: #ffdfca;
+  --color-apricot-400: #ffd8be;
+  --color-apricot-500: #ffd8be;
+  --color-apricot-600: #ffa264;
+  --color-apricot-700: #ff6d0b;
+  --color-apricot-800: #b14700;
+  --color-apricot-900: #592300;
+}
 
 /* Base styles */
 html {
