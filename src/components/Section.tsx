@@ -33,7 +33,7 @@ export const Section: React.FC<SectionProps> = ({
         {action && (
           <button
             onClick={action.onClick}
-            className="text-sm font-medium text-brand hover:text-brand-dark transition-colors"
+            className="text-sm font-medium text-brand-600 hover:text-brand-700 transition-colors"
           >
             {action.label}
           </button>

@@ -9,6 +9,7 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
+import { useUI } from '../state/ui';
 
 interface CarouselProps {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   className = '',
   showControls = false 
 }) => {
+  const wireframe = useUI((state) => state.wireframe);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     containScroll: 'trimSnaps',
@@ -47,17 +49,27 @@ export const Carousel: React.FC<CarouselProps> = ({
         <>
           <button
             onClick={scrollPrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center hover:bg-white transition-colors"
+            className={clsx(
+              "absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+              wireframe 
+                ? "bg-white border-2 border-gray-400 hover:bg-gray-50" 
+                : "bg-white/90 backdrop-blur shadow-md hover:bg-white"
+            )}
             aria-label="Previous"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className={clsx("w-4 h-4", wireframe ? "text-gray-600" : "text-gray-700")} />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center hover:bg-white transition-colors"
+            className={clsx(
+              "absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+              wireframe 
+                ? "bg-white border-2 border-gray-400 hover:bg-gray-50" 
+                : "bg-white/90 backdrop-blur shadow-md hover:bg-white"
+            )}
             aria-label="Next"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className={clsx("w-4 h-4", wireframe ? "text-gray-600" : "text-gray-700")} />
           </button>
         </>
       )}

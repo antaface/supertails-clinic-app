@@ -9,6 +9,7 @@ import React from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
+import { useUI } from '../state/ui';
 
 interface AccordionProps {
   title: string;
@@ -21,15 +22,26 @@ export const Accordion: React.FC<AccordionProps> = ({
   children, 
   defaultOpen = false 
 }) => {
+  const wireframe = useUI((state) => state.wireframe);
+  
   return (
     <Disclosure defaultOpen={defaultOpen}>
       {({ open }) => (
-        <div className="bg-white rounded-2xl shadow-sm border border-periwinkle-800/10 overflow-hidden">
-          <Disclosure.Button className="w-full px-5 py-4 flex items-center justify-between hover:bg-ghost-white/50 transition-colors">
+        <div className={clsx(
+          "rounded-2xl overflow-hidden",
+          wireframe 
+            ? "bg-white border-2 border-gray-400" 
+            : "bg-white shadow-sm border border-periwinkle-800/10"
+        )}>
+          <Disclosure.Button className={clsx(
+            "w-full px-5 py-4 flex items-center justify-between transition-colors",
+            wireframe ? "hover:bg-gray-50" : "hover:bg-ghost-white/50"
+          )}>
             <h3 className="text-left font-semibold text-gray-900">{title}</h3>
             <ChevronDown
               className={clsx(
-                'w-5 h-5 text-gray-500 transition-transform duration-200',
+                'w-5 h-5 transition-transform duration-200',
+                wireframe ? 'text-gray-600' : 'text-gray-500',
                 open && 'rotate-180'
               )}
             />
@@ -44,7 +56,10 @@ export const Accordion: React.FC<AccordionProps> = ({
             leaveTo="transform scale-95 opacity-0"
           >
             <Disclosure.Panel className="px-5 pb-4">
-              <div className="border-t border-periwinkle-800/5 pt-4">
+              <div className={clsx(
+                "border-t pt-4",
+                wireframe ? "border-gray-300" : "border-periwinkle-800/5"
+              )}>
                 {children}
               </div>
             </Disclosure.Panel>

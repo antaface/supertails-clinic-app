@@ -11,7 +11,7 @@ import { useUI } from '../state/ui';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'ghost' | 'danger' | 'outline';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   onClick?: () => void;
@@ -37,15 +37,17 @@ export const Button: React.FC<ButtonProps> = ({
   const variantClasses = wireframe 
     ? {
         primary: 'bg-gray-800 text-white border-2 border-gray-800',
+        secondary: 'bg-transparent text-gray-800 border-2 border-gray-300 hover:bg-gray-100',
         ghost: 'bg-transparent text-gray-800 border-2 border-gray-300 hover:bg-gray-100',
         danger: 'bg-gray-800 text-white border-2 border-gray-800',
         outline: 'border-2 border-gray-600 text-gray-800 hover:bg-gray-100',
       }
     : {
-        primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300/40',
-        ghost: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300/40',
-        danger: 'bg-apricot-300 text-white hover:bg-apricot-400 shadow-md hover:shadow-lg focus:ring-apricot-300/40',
-        outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-300/40',
+        primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md hover:shadow-lg focus:ring-brand-300',
+        secondary: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300',
+        ghost: 'text-brand-700 hover:bg-brand-50 focus:ring-brand-300',
+        danger: 'bg-apricot-300 text-white hover:bg-apricot-400 shadow-md hover:shadow-lg focus:ring-apricot-300',
+        outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 focus:ring-brand-300',
       };
   
   const sizeClasses = {
