@@ -26,10 +26,10 @@ export const BottomTabs: React.FC = () => {
 
   return (
     <div className={clsx(
-      'bg-white max-w-[430px] mx-auto w-full pb-safe-bottom transition-all',
+      'max-w-[430px] mx-auto w-full pb-safe-bottom transition-all',
       wireframe 
-        ? 'border-t-2 border-gray-300' 
-        : 'border-t border-periwinkle-800/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]'
+        ? 'bg-white border-t-2 border-gray-300' 
+        : 'bg-white/95 backdrop-blur-md border-t border-brand-100 shadow-[0_-8px_24px_rgba(147,129,255,0.15)]'
     )}>
       <div className="flex justify-around items-center h-16 px-2">
         {tabs.map((tab) => {
@@ -47,8 +47,8 @@ export const BottomTabs: React.FC = () => {
                     ? "bg-gray-800 text-white" 
                     : "text-gray-500"
                   : isActive 
-                    ? "bg-brand-600 text-white shadow-md" 
-                    : "text-gray-500 hover:text-brand-600"
+                    ? "bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-lg scale-105" 
+                    : "text-gray-500 hover:text-brand-600 hover:bg-brand-50"
               )}
               aria-label={tab.label}
               aria-current={isActive ? 'page' : undefined}

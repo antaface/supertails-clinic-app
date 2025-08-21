@@ -25,22 +25,28 @@ export const AppBar: React.FC<AppBarProps> = ({ title, showBack, onBack }) => {
 
   return (
     <div className={clsx(
-      'h-14 bg-white flex items-center justify-between px-4 transition-all',
+      'h-14 flex items-center justify-between px-4 transition-all',
       wireframe 
-        ? 'border-b-2 border-gray-300' 
-        : 'border-b border-periwinkle-800/10 shadow-sm'
+        ? 'bg-white border-b-2 border-gray-300' 
+        : 'bg-white border-b border-brand-100 shadow-md backdrop-blur-sm'
     )}>
       <div className="flex items-center gap-3">
         {showBack && (
           <button 
             onClick={onBack} 
-            className="p-2 -ml-2 rounded-lg hover:bg-ghost-white transition-colors"
+            className={clsx(
+              "p-2 -ml-2 rounded-lg transition-colors",
+              wireframe ? "hover:bg-gray-100" : "hover:bg-brand-50"
+            )}
             aria-label="Go back"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-700" />
+            <ArrowLeft className={clsx("w-5 h-5", wireframe ? "text-gray-700" : "text-brand-600")} />
           </button>
         )}
-        <h1 className="text-lg font-bold tracking-tight text-gray-900">{title}</h1>
+        <h1 className={clsx(
+          "text-lg font-bold tracking-tight",
+          wireframe ? "text-gray-900" : "text-brand-800"
+        )}>{title}</h1>
       </div>
       
       <button

@@ -31,10 +31,10 @@ export const Home: React.FC = () => {
   const wireframe = useUI((state) => state.wireframe);
 
   const quickActions = [
-    { icon: Calendar, label: 'Book Visit', color: 'bg-brand-100 text-brand-600', path: '/book' },
-    { icon: FileText, label: 'Prescriptions', color: 'bg-periwinkle-100 text-periwinkle-600', path: '/prescriptions' },
-    { icon: Activity, label: 'Reports', color: 'bg-apricot-100 text-apricot-600', path: '/reports' },
-    { icon: Receipt, label: 'Records', color: 'bg-antique-white-200 text-antique-white-700', path: '/records' },
+    { icon: Calendar, label: 'Book Visit', color: 'bg-brand-100 text-brand-600', colorWire: 'bg-gray-100 text-gray-600', path: '/book' },
+    { icon: FileText, label: 'Prescriptions', color: 'bg-periwinkle-100 text-periwinkle-600', colorWire: 'bg-gray-100 text-gray-600', path: '/prescriptions' },
+    { icon: Activity, label: 'Reports', color: 'bg-apricot-100 text-apricot-600', colorWire: 'bg-gray-100 text-gray-600', path: '/reports' },
+    { icon: Receipt, label: 'Records', color: 'bg-antique-white-200 text-antique-white-700', colorWire: 'bg-gray-100 text-gray-600', path: '/records' },
   ];
 
   const services = [
@@ -47,16 +47,16 @@ export const Home: React.FC = () => {
     <div className="pb-4">
       {/* Hero Section */}
       <div className={clsx(
-        "px-4 py-8 mb-6",
-        wireframe ? "bg-gray-200" : "bg-gradient-to-br from-brand-500 to-periwinkle-500"
+        "px-4 py-8 mb-6 rounded-b-3xl",
+        wireframe ? "bg-gray-200 border-2 border-gray-400" : "bg-gradient-to-br from-tropical-indigo-500 via-brand-500 to-periwinkle-500 shadow-lg"
       )}>
-        <div className="text-white">
-          <h1 className="text-2xl font-bold mb-2">Welcome to Supertails</h1>
-          <p className="text-white/90 mb-4">Expert pet care, anytime, anywhere</p>
+        <div className={wireframe ? "text-gray-900" : "text-white"}>
+          <h1 className={clsx("text-2xl font-bold mb-2", !wireframe && "drop-shadow-lg")}>Welcome to Supertails</h1>
+          <p className={clsx("mb-4", wireframe ? "text-gray-700" : "text-white/90")}>Expert pet care, anytime, anywhere</p>
           <Button 
-            variant={wireframe ? "outline" : "primary"}
+            variant="primary"
             onClick={() => navigate('/book')}
-            className={!wireframe ? "bg-white text-brand-700 hover:bg-ghost-white" : ""}
+            className={!wireframe ? "!bg-white !text-brand-700 hover:!bg-ghost-white shadow-lg" : ""}
           >
             Book Appointment
             <ArrowRight className="inline-block ml-2 w-4 h-4" />
@@ -73,11 +73,14 @@ export const Home: React.FC = () => {
               <Card 
                 key={action.label}
                 onClick={() => navigate(action.path)}
-                className="flex flex-col items-center py-6 hover:scale-[1.02]"
+                className={clsx(
+                  "flex flex-col items-center py-6 hover:scale-[1.02] transition-transform",
+                  !wireframe && "hover:shadow-lg"
+                )}
               >
                 <div className={clsx(
-                  'p-3 rounded-xl mb-3',
-                  wireframe ? 'bg-gray-200' : action.color
+                  'p-3 rounded-xl mb-3 transition-all',
+                  wireframe ? action.colorWire : action.color
                 )}>
                   <Icon className="w-6 h-6" />
                 </div>
@@ -248,16 +251,16 @@ export const Home: React.FC = () => {
       <Section title="Why Choose Supertails" className="px-4 mb-6">
         <div className="grid grid-cols-3 gap-3">
           {[
-            { icon: Shield, label: 'Fear Free', color: 'bg-brand-100 text-brand-600' },
-            { icon: Heart, label: 'Compassionate', color: 'bg-periwinkle-100 text-periwinkle-600' },
-            { icon: Award, label: 'Expert Care', color: 'bg-apricot-100 text-apricot-600' },
+            { icon: Shield, label: 'Fear Free', color: 'bg-brand-100 text-brand-600', colorWire: 'bg-gray-100 text-gray-600' },
+            { icon: Heart, label: 'Compassionate', color: 'bg-periwinkle-100 text-periwinkle-600', colorWire: 'bg-gray-100 text-gray-600' },
+            { icon: Award, label: 'Expert Care', color: 'bg-apricot-100 text-apricot-600', colorWire: 'bg-gray-100 text-gray-600' },
           ].map((item) => {
             const Icon = item.icon;
             return (
               <Card key={item.label} className="text-center py-4">
                 <div className={clsx(
                   "w-12 h-12 rounded-xl mx-auto mb-2 flex items-center justify-center",
-                  wireframe ? "bg-gray-200" : item.color
+                  wireframe ? item.colorWire : item.color
                 )}>
                   <Icon className="w-6 h-6" />
                 </div>
@@ -284,9 +287,9 @@ export const Home: React.FC = () => {
             wireframe ? "text-gray-600" : "text-white/90"
           )}>Book your pet's appointment in just 2 minutes</p>
           <Button 
-            variant={wireframe ? "outline" : "primary"}
+            variant="primary"
             onClick={() => navigate('/book')}
-            className={!wireframe ? "bg-white text-brand-700 hover:bg-ghost-white" : ""}
+            className={!wireframe ? "!bg-white !text-brand-700 hover:!bg-ghost-white shadow-lg" : ""}
           >
             Book Now
           </Button>

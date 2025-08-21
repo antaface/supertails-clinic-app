@@ -8,7 +8,7 @@
  * - Safe area padding: pt-safe-top, pb-safe-bottom
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppBar } from '../components/AppBar';
 import { BottomTabs } from '../components/BottomTabs';
@@ -35,19 +35,12 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
     }
   };
 
-  // Apply wireframe class to body
-  useEffect(() => {
-    if (wireframe) {
-      document.body.classList.add('wireframe');
-    } else {
-      document.body.classList.remove('wireframe');
-    }
-  }, [wireframe]);
+  // No longer apply wireframe class to body - handle it component by component
 
   return (
     <div className={clsx(
       'mx-auto w-full max-w-[430px] min-h-screen flex flex-col font-sans antialiased text-gray-900',
-      wireframe ? 'bg-white' : 'bg-ghost-white'
+      wireframe ? 'bg-gray-50' : 'bg-ghost-white'
     )}>
       {/* Sticky Header with safe area */}
       <header className="sticky top-0 z-50 pt-safe-top">
@@ -62,7 +55,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       </main>
       
       {/* Fixed Bottom Navigation with safe area */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-[430px] mx-auto">
         <BottomTabs />
       </nav>
     </div>

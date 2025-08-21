@@ -31,14 +31,7 @@ p {
   line-height: 1.75;
 }
 
-/* Wireframe mode overrides */
-.wireframe {
-  filter: grayscale(100%) !important;
-}
-
-.wireframe * {
-  box-shadow: none !important;
-}
+/* Wireframe mode is handled at component level now */
 
 /* Scrollbar hide utility */
 .scrollbar-hide {

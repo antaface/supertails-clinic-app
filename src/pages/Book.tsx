@@ -99,7 +99,7 @@ export const Book: React.FC = () => {
                 className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
-                  <Stethoscope className="w-6 h-6 text-blue-600" />
+                  <Stethoscope className="w-6 h-6 text-brand-600" />
                   <div>
                     <div className="font-semibold">Vet In-clinic</div>
                     <div className="text-sm text-gray-500">Visit our clinic</div>
@@ -116,7 +116,7 @@ export const Book: React.FC = () => {
                 className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
-                  <Home className="w-6 h-6 text-green-600" />
+                  <Home className="w-6 h-6 text-periwinkle-600" />
                   <div>
                     <div className="font-semibold">Vet at Home</div>
                     <div className="text-sm text-gray-500">We come to you</div>
@@ -133,7 +133,7 @@ export const Book: React.FC = () => {
                 className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
-                  <Phone className="w-6 h-6 text-purple-600" />
+                  <Phone className="w-6 h-6 text-brand-600" />
                   <div>
                     <div className="font-semibold">Vet on Phone</div>
                     <div className="text-sm text-gray-500">Teleconsultation</div>
@@ -150,7 +150,7 @@ export const Book: React.FC = () => {
                 className="flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
-                  <Scissors className="w-6 h-6 text-pink-600" />
+                  <Scissors className="w-6 h-6 text-apricot-500" />
                   <div>
                     <div className="font-semibold">Grooming</div>
                     <div className="text-sm text-gray-500">Professional grooming</div>
@@ -179,7 +179,7 @@ export const Book: React.FC = () => {
                     onClick={() => setBooking({ ...booking, clinic })}
                     icon={
                       <div className={`w-3 h-3 rounded-full ${
-                        booking.clinic?.id === clinic.id ? 'bg-blue-600' : 'bg-gray-300'
+                        booking.clinic?.id === clinic.id ? 'bg-brand-600' : 'bg-gray-300'
                       }`} />
                     }
                     showArrow={false}
@@ -207,9 +207,9 @@ export const Book: React.FC = () => {
                     disabled={!slot.available}
                     className={`p-2 rounded-lg border text-sm ${
                       booking.timeSlot?.id === slot.id
-                        ? 'border-blue-600 bg-blue-50 text-blue-600'
+                        ? 'border-brand-600 bg-brand-50 text-brand-600'
                         : slot.available
-                        ? 'border-gray-300 hover:bg-gray-50'
+                        ? 'border-gray-300 hover:bg-brand-50'
                         : 'border-gray-200 bg-gray-100 text-gray-400'
                     }`}
                   >
@@ -243,7 +243,7 @@ export const Book: React.FC = () => {
                   onClick={() => {
                     setBooking({ ...booking, address: addr });
                   }}
-                  className={`${booking.address?.id === addr.id ? 'border-blue-600' : ''}`}
+                  className={`${booking.address?.id === addr.id ? 'ring-2 ring-brand-600' : ''}`}
                 >
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-gray-600" />
@@ -287,7 +287,7 @@ export const Book: React.FC = () => {
                     onClick={() => {
                       setBooking({ ...booking, service: serviceList, subService });
                     }}
-                    className={`${booking.subService?.id === subService.id ? 'border-blue-600' : ''}`}
+                    className={`${booking.subService?.id === subService.id ? 'ring-2 ring-brand-600' : ''}`}
                   >
                     <div className="flex justify-between items-center">
                       <div className="font-medium">{subService.name}</div>
@@ -334,7 +334,7 @@ export const Book: React.FC = () => {
             <div className="space-y-3 mb-6">
               <Card
                 onClick={() => setBooking({ ...booking, provider: null })}
-                className={`${!booking.provider ? 'border-blue-600' : ''}`}
+                className={`${!booking.provider ? 'ring-2 ring-brand-600' : ''}`}
               >
                 <div className="flex items-center gap-3">
                   <User className="w-8 h-8 text-gray-400" />
@@ -349,7 +349,7 @@ export const Book: React.FC = () => {
                 <Card
                   key={provider.id}
                   onClick={() => setBooking({ ...booking, provider })}
-                  className={`${booking.provider?.id === provider.id ? 'border-blue-600' : ''}`}
+                  className={`${booking.provider?.id === provider.id ? 'ring-2 ring-brand-600' : ''}`}
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
