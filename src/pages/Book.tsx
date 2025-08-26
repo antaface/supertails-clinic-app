@@ -5,7 +5,7 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { List, ListItem } from '../components/List';
 import { 
-  Dog, Cat, MapPin, Clock, User, ChevronRight, 
+  Dog, Cat, MapPin, User, ChevronRight, 
   Stethoscope, Home, Phone, Scissors
 } from 'lucide-react';
 import { pets, clinics, timeSlots, services, vets, groomers, addresses } from '../data/mockData';
