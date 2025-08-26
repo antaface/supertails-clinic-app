@@ -16,7 +16,7 @@ import clsx from 'clsx';
 export const Prescriptions: React.FC = () => {
   const [selectedPrescription, setSelectedPrescription] = useState<string | null>(null);
 
-  const handleCreateCart = (prescriptionId: string) => {
+  const handleCreateCart = => {
     alert('Cart created! Redirecting to Supertails Pharmacy...');
   };
 
@@ -109,7 +109,7 @@ export const Prescriptions: React.FC = () => {
                 <Button
                   size="sm"
                   fullWidth
-                  onClick={() => handleCreateCart(prescription.id)}
+                  onClick={handleCreateCart}
                   disabled={!prescription.medications.some(m => m.availableInPharmacy)}
                 >
                   <ShoppingCart className="w-4 h-4 mr-2" />
