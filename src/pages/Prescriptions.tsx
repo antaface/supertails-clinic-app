@@ -1,10 +1,10 @@
 /**
  * Prescriptions Page
- * 
+ *
  * View and manage prescriptions with pharmacy integration
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Chip } from '../components/Chip';
@@ -13,11 +13,11 @@ import { FileText, ShoppingCart, CheckCircle, AlertCircle, Pill } from 'lucide-r
 import { prescriptions } from '../data/mockData';
 import clsx from 'clsx';
 
-export const Prescriptions: React.FC = () => {
+export function Prescriptions() {
   const [selectedPrescription, setSelectedPrescription] = useState<string | null>(null);
 
-  const handleCreateCart = => {
-    alert('Cart created! Redirecting to Supertails Pharmacy...');
+  const handleCreateCart = (prescriptionId: string) => {
+    alert(`Cart created for prescription ${prescriptionId}! Redirecting to Supertails Pharmacy...`);
   };
 
   return (
@@ -43,32 +43,34 @@ export const Prescriptions: React.FC = () => {
                 <div>
                   <h3 className="font-bold text-gray-900">{prescription.petName}</h3>
                   <p className="text-sm text-gray-500">
-                    {new Date(prescription.date).toLocaleDateString('en-IN', { 
-                      day: 'numeric', 
-                      month: 'short', 
-                      year: 'numeric' 
+                    {new Date(prescription.date).toLocaleDateString('en-IN', {
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric',
                     })}
                   </p>
                   <p className="text-xs text-gray-400 mt-1">{prescription.vetName}</p>
                 </div>
-                <Chip 
-                  label={prescription.status} 
+                <Chip
+                  label={prescription.status}
                   status={prescription.status === 'active' ? 'success' : 'default'}
                 />
               </div>
 
               <div className="space-y-2 mb-4">
                 {prescription.medications.map((med, idx) => (
-                  <div 
+                  <div
                     key={idx}
-                    onClick={() => setSelectedPrescription(
-                      selectedPrescription === prescription.id ? null : prescription.id
-                    )}
+                    onClick={() =>
+                      setSelectedPrescription(
+                        selectedPrescription === prescription.id ? null : prescription.id,
+                      )
+                    }
                     className={clsx(
-                      "border rounded-xl p-3 cursor-pointer transition-all",
-                      selectedPrescription === prescription.id 
-                        ? 'border-brand bg-brand/5' 
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                      'border rounded-xl p-3 cursor-pointer transition-all',
+                      selectedPrescription === prescription.id
+                        ? 'border-brand bg-brand/5'
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50',
                     )}
                   >
                     <div className="flex justify-between items-start">
@@ -109,8 +111,8 @@ export const Prescriptions: React.FC = () => {
                 <Button
                   size="sm"
                   fullWidth
-                  onClick={handleCreateCart}
-                  disabled={!prescription.medications.some(m => m.availableInPharmacy)}
+                  onClick={() => handleCreateCart(prescription.id)}
+                  disabled={!prescription.medications.some((m) => m.availableInPharmacy)}
                 >
                   <ShoppingCart className="w-4 h-4 mr-2" />
                   Create Cart
@@ -136,4 +138,4 @@ export const Prescriptions: React.FC = () => {
       )}
     </div>
   );
-};
+}
