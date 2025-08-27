@@ -1,6 +1,5 @@
 /**
  * Prescriptions Page
- *
  * View and manage prescriptions with pharmacy integration
  */
 
@@ -13,7 +12,7 @@ import { FileText, ShoppingCart, CheckCircle, AlertCircle, Pill } from 'lucide-r
 import { prescriptions } from '../data/mockData';
 import clsx from 'clsx';
 
-export function Prescriptions() {
+export default function Prescriptions() {
   const [selectedPrescription, setSelectedPrescription] = useState<string | null>(null);
 
   const handleCreateCart = (prescriptionId: string) => {
@@ -22,6 +21,7 @@ export function Prescriptions() {
 
   return (
     <div className="p-4 pb-20 animate-fade-in">
+      {/* Tip panel */}
       <div className="mb-4">
         <Card variant="outlined" className="bg-blue-50 border-blue-200">
           <div className="flex items-center gap-3">
@@ -39,6 +39,7 @@ export function Prescriptions() {
         <div className="space-y-4">
           {prescriptions.map((prescription) => (
             <Card key={prescription.id} variant="elevated">
+              {/* Header */}
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="font-bold text-gray-900">{prescription.petName}</h3>
@@ -57,20 +58,21 @@ export function Prescriptions() {
                 />
               </div>
 
+              {/* Med list */}
               <div className="space-y-2 mb-4">
                 {prescription.medications.map((med, idx) => (
                   <div
                     key={idx}
                     onClick={() =>
                       setSelectedPrescription(
-                        selectedPrescription === prescription.id ? null : prescription.id,
+                        selectedPrescription === prescription.id ? null : prescription.id
                       )
                     }
                     className={clsx(
                       'border rounded-xl p-3 cursor-pointer transition-all',
                       selectedPrescription === prescription.id
                         ? 'border-brand bg-brand/5'
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50',
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                     )}
                   >
                     <div className="flex justify-between items-start">
@@ -88,6 +90,7 @@ export function Prescriptions() {
                         <AlertCircle className="w-5 h-5 text-gray-400 flex-shrink-0" />
                       )}
                     </div>
+
                     {selectedPrescription === prescription.id && (
                       <div className="mt-3 pt-3 border-t border-gray-100">
                         <p className="text-sm">
@@ -107,6 +110,7 @@ export function Prescriptions() {
                 ))}
               </div>
 
+              {/* Actions */}
               <div className="flex gap-2">
                 <Button
                   size="sm"
@@ -127,6 +131,7 @@ export function Prescriptions() {
         </div>
       </Section>
 
+      {/* Empty state */}
       {prescriptions.length === 0 && (
         <div className="text-center py-16">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
